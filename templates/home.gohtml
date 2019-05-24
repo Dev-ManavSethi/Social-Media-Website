@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Facebook Home</title>
+    </head>
+    <body>
+
+<form action="/search" method="POST">
+<input type="text" id="search" placeholder="Search"/>
+<div id="results"></div>
+<input type="submit" value="Search"/>
+</form><br/>
+   <h1>Welcome {{.FirstName}}!</h1>
+    <a href="/home">Home</a><br/>
+    <a href="/profile">Profile</a><br/>
+    <a href="friends">Friends</a><br/>
+    <a href="/photos">Photos</a><br/>
+    <a href="/videos">Videos</a><br/>
+        <a href="/logout">Logout</a>
+
+        <script>
+        $("search").keyup(function(){
+txt=$("search").val();
+$.post("/search",{suggest:txt},function(result){
+     $("#results").html(result);
+     });
+   });</script>
+    </body>
+</html>
